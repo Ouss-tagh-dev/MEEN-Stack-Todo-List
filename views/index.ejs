@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
+<%- include('partials/header.ejs') %>
     <div class="table-container">
         <h1 class="todo-title">Todo List</h1>
         <div>
             <a href="/add-todo" class="btn">Add todo</a>
-            <br>
+            <br><br>
         </div>
         <table>
             <tr>
@@ -35,6 +25,4 @@
             </tr>
         </table>
     </div>
-</body>
-
-</html>
+    <%- include('partials/footer.ejs') %>
