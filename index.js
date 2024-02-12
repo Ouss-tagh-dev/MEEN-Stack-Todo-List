@@ -46,6 +46,15 @@ app.get("/update-todo", (req, res, next) => {
   }
 });
 
+// Update todo
+app.get("/delete-todo", (req, res, next) => {
+  try {
+    res.render("delete-todo"); 
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
