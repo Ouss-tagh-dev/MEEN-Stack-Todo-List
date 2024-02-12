@@ -13,16 +13,28 @@
                 <th>Updated at</th>
                 <th>Action</th>
             </tr>
-            <tr>
-                <td>Test Title</td>
-                <td>Test Description</td>
-                <td>Test Created at</td>
-                <td>Test Updated at</td>
-                <td>
-                    <a href="/update-todo" class="btn">Edit</a>
-                    <a href="/delete-todo" class="btn">Delete</a>
-                </td>
-            </tr>
+
+            <% for(let i=0; i < todos.length; i++) { %>
+                <tr>
+                    <td>
+                        <%= todos[i].title %>
+                    </td>
+                    <td>
+                        <%= todos[i].desc %>
+                    </td>
+                    <td>
+                        <%= todos[i].createdAt %>
+                    </td>
+                    <td>
+                        <%= todos[i].updatedAt %>
+                    </td>
+                    <td>
+                        <a href="/update-todo" class="btn">Edit</a>
+                        <a href="/delete-todo" class="btn">Delete</a>
+                    </td>
+                </tr>
+                <% } %>
+
         </table>
     </div>
     <%- include('partials/footer.ejs') %>

@@ -34,10 +34,11 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Home page
-app.get("/", (req, res, next) => {
+// List Todo
+app.get("/", async (req, res, next) => {
   try {
-    res.render("index", { title: "Todo List" });
+    const todos = await Todo.find({}).sort({ createdAt: 1 });
+    res.render("index", { title: "Todo List", todos });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
