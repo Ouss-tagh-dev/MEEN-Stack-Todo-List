@@ -23,10 +23,10 @@
                         <%= todos[i].desc %>
                     </td>
                     <td>
-                        <%= todos[i].createdAt %>
+                        <%= moment(todos[i].createdAt).format("YYYY -MM-DD HH:mm") %>
                     </td>
                     <td>
-                        <%= todos[i].updatedAt %>
+                        <%= moment(todos[i].updatedAt).format("YYYY -MM-DD HH:mm") %>
                     </td>
                     <td>
                         <a href="/update-todo" class="btn">Edit</a>
