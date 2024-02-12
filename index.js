@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Home page
 app.get("/", (req, res, next) => {
   try {
-    res.render("index");
+    res.render("index", { title: "Todo List" });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -34,7 +34,7 @@ app.get("/", (req, res, next) => {
 // Add todo
 app.get("/add-todo", (req, res, next) => {
   try {
-    res.render("new-todo");
+    res.render("new-todo", { title: "New Todo" });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -43,7 +43,7 @@ app.get("/add-todo", (req, res, next) => {
 // Update todo
 app.get("/update-todo", (req, res, next) => {
   try {
-    res.render("update-todo");
+    res.render("update-todo", { title: "Update Todo" });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -52,7 +52,7 @@ app.get("/update-todo", (req, res, next) => {
 // Update todo
 app.get("/delete-todo", (req, res, next) => {
   try {
-    res.render("delete-todo");
+    res.render("delete-todo", { title: "Delete Todo" });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
