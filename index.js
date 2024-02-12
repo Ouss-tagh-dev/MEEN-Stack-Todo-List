@@ -1,36 +1,43 @@
-const { cache } = require("ejs");
 const express = require("express");
 const mongoose = require("mongoose");
 
 const PORT = 8000;
 
-// init app
+// Initialize Express application
 const app = express();
 
-// Dtabase connection
+// Database connection
 const connectionUrl = "mongodb://127.0.0.1:27017/todoDb";
-mongoose
-  .connect(connectionUrl)
+mongoose.connect(connectionUrl)
   .then(() => {
-    console.log("Database  Connected");
+    console.log("Database connection successful");
   })
   .catch((err) => {
-    console.error(err);
+    console.error("Error connecting to database:", err);
   });
 
-// view engine
+// View engine setup
 app.set("view engine", "ejs");
 
-//
+// Home page
 app.get("/", (req, res, next) => {
   try {
-    res.render("");
+    res.render("index"); 
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
 });
 
-// listen server
+// Add todo
+app.get("/add-todo", (req, res, next) => {
+  try {
+    res.render("new-todo"); 
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+// Start server
 app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
+  console.log(`Server is listening on port ${PORT}`);
 });
