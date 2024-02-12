@@ -18,6 +18,16 @@ mongoose
     console.error("Error connecting to database:", err);
   });
 
+const todoSchema = mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    desc: String,
+  },
+  { timestamps: true }
+);
+
+const Todo = mongoose.model("Todo", todoSchema);
+
 // View engine setup
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
