@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const bodyParser = require("body-parser");
 const moment = require("moment");
+const connectMongoDb = require("./init/mongodb");
 
 const PORT = 8000;
 
@@ -10,15 +11,7 @@ const PORT = 8000;
 const app = express();
 
 // Database connection
-const connectionUrl = "mongodb://127.0.0.1:27017/todoDb";
-mongoose
-  .connect(connectionUrl)
-  .then(() => {
-    console.log("Database connection successful");
-  })
-  .catch((err) => {
-    console.error("Error connecting to database:", err);
-  });
+connectMongoDb();
 
 const todoSchema = mongoose.Schema(
   {
