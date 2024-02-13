@@ -25,20 +25,20 @@ const addTodoFormController = (req, res, next) => {
 const updateTodoFormController = async (req, res, next) => {
   try {
     const { id } = req.query;
-    const todo = await Todo.findById(id); 
+    const todo = await Todo.findById(id);
     res.render("update-todo", { title: "Update Todo", todo });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
 };
 
-
 // Controller for rendering the page to delete a todo
 const deleteTodoPageController = (req, res, next) => {
   try {
-    res.render("delete-todo", { title: "Delete Todo" });
+    const { id } = req.query;
+    res.render("delete-todo", { title: "Delete todo", id });
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -77,6 +77,19 @@ const updateTodoController = async (req, res, next) => {
   }
 };
 
+// Controller for deleting a todo
+const deleteTodoController = async (req, res, next) => {
+  try {
+    const { id, confirm } = req.query;
+    if (confirm === "yes") {
+      await Todo.findByIdAndDelete(id);
+    }
+    res.redirect("/");
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   homeController,
   addTodoFormController,
@@ -84,4 +97,5 @@ module.exports = {
   deleteTodoPageController,
   addTodoController,
   updateTodoController,
+  deleteTodoController,
 };

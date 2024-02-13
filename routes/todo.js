@@ -20,4 +20,7 @@ router.post("/add-todo", todoController.addTodoController);
 // Update todo
 router.post("/update-todo/:id", todoController.updateTodoController);
 
+// Delete todo (confirm)
+router.get("/confirm-delete", todoController.deleteTodoController);
+
 module.exports = router;

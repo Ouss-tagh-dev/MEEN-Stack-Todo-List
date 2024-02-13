@@ -4,8 +4,8 @@
         <a href="/" class="btn">Back</a>
         <div class="confirm">
             <p>Are you sure you want delete this todo </p>
-            <a href="#" class="btn">Yes</a>
-            <a href="#" class="btn">No</a>
+            <a class="btn" href="/confirm-delete?id=<%= id %>&confirm=yes">Yes</a>
+            <a class="btn" href="/confirm-delete?id=<%= id %>&confirm=no">No</a>
         </div>
     </div>
     <%- include('partials/footer.ejs') %>
