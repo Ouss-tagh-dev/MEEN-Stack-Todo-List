@@ -22,13 +22,16 @@ const addTodoFormController = (req, res, next) => {
 };
 
 // Controller for rendering the form to update a todo
-const updateTodoFormController = (req, res, next) => {
+const updateTodoFormController = async (req, res, next) => {
   try {
-    res.render("update-todo", { title: "Update Todo" });
+    const { id } = req.query;
+    const todo = await Todo.findById(id); 
+    res.render("update-todo", { title: "Update Todo", todo });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
 };
+
 
 // Controller for rendering the page to delete a todo
 const deleteTodoPageController = (req, res, next) => {
@@ -56,10 +59,29 @@ const addTodoController = async (req, res, next) => {
   }
 };
 
+// Controller for updating a todo
+const updateTodoController = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { title, desc } = req.body;
+    const todo = await Todo.findById(id);
+    if (!todo) {
+      return res.status(404).send({ message: "Todo not found" });
+    }
+    todo.title = title;
+    todo.desc = desc;
+    await todo.save();
+    res.redirect("/");
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
+
 module.exports = {
   homeController,
   addTodoFormController,
   updateTodoFormController,
   deleteTodoPageController,
   addTodoController,
+  updateTodoController,
 };

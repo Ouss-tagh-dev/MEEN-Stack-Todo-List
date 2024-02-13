@@ -17,4 +17,7 @@ router.get("/delete-todo", todoController.deleteTodoPageController);
 // Add todo
 router.post("/add-todo", todoController.addTodoController);
 
+// Update todo
+router.post("/update-todo/:id", todoController.updateTodoController);
+
 module.exports = router;

@@ -29,7 +29,7 @@
                         <%= moment(todos[i].updatedAt).format("YYYY -MM-DD HH:mm") %>
                     </td>
                     <td>
-                        <a href="/update-todo" class="btn">Edit</a>
+                        <a href="/update-todo?id=<%=todos[i]._id%>" class="btn">Edit</a>
                         <a href="/delete-todo" class="btn">Delete</a>
                     </td>
                 </tr>
