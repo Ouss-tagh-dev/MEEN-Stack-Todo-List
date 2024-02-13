@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const ConnectMongoDb = () => {
-  const connectionUrl = "mongodb://127.0.0.1:27017/todoDb";
   mongoose
-    .connect(connectionUrl)
+    .connect(process.env.CONNECTION_URL)
     .then(() => {
       console.log("Database connection successful");
     })
